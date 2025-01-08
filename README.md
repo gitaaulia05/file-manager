@@ -39,8 +39,8 @@ project-folder/
 ## Installation
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/<your-username>/vaultsync.git
-   cd vaultsync
+   git clone https://github.com/Muhammad-Ikhwan-Fathulloh/VaultSync.git
+   cd VaultSync
    ```
 2. **Install dependencies**:
    ```bash
