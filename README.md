@@ -3,7 +3,7 @@
 **Created by Muhammad Ikhwan Fathulloh**
 
 ## Overview
-VaultSync is a lightweight file management system built with native JavaScript and Node.js. It demonstrates core concepts of memory handling, input/output operations, file manipulation, and basic security. The application is deployable on platforms like [Render.com](https://render.com) or [Vercel](https://vercel.com).
+VaultSync is a lightweight file management system built with native JavaScript and Node.js. It demonstrates core concepts of memory handling, input/output operations, file manipulation, and basic security.
 
 ---
 
@@ -19,7 +19,6 @@ VaultSync is a lightweight file management system built with native JavaScript a
 ## Requirements
 - [Node.js](https://nodejs.org/) (v14 or higher)
 - A modern web browser (e.g., Chrome, Firefox)
-- Internet connection for deployment (if deploying to Vercel)
 
 ---
 
@@ -73,21 +72,34 @@ project-folder/
 
 ---
 
-## Deployment to Vercel
-1. **Install the Vercel CLI**:
-   ```bash
-   npm install -g vercel
-   ```
-2. **Login to Vercel**:
-   ```bash
-   vercel login
-   ```
-3. **Deploy the application**:
-   ```bash
-   vercel
-   ```
-4. Follow the prompts to complete the deployment.
-5. Once deployed, access your application at the generated Vercel URL.
+## Docker Support
+
+### Building the Docker Image
+
+```bash
+docker build -t node-file-server .
+```
+
+### Running the Docker Container
+
+```bash
+docker run -p 3000:3000 -v $(pwd)/uploads:/usr/src/app/uploads --name file-server node-file-server
+```
+
+- **`-p 3000:3000`**: Maps port 3000 on the host to port 3000 in the container.
+- **`-v $(pwd)/uploads:/usr/src/app/uploads`**: Synchronizes the `uploads` directory between the host and the container.
+
+### Stopping the Container
+
+```bash
+docker stop file-server
+```
+
+### Removing the Container
+
+```bash
+docker rm file-server
+```
 
 ---
 
@@ -104,6 +116,25 @@ Frontend interface for interacting with the application.
 
 ### 4. `style.css`
 Provides a clean and simple UI design for the application.
+
+---
+
+## API Endpoints
+
+### `GET /`
+Serves the main HTML page.
+
+### `GET /style.css`
+Serves the CSS file for styling.
+
+### `POST /upload`
+Uploads a file to the server.
+
+### `GET /files`
+Returns a list of uploaded files along with their metadata in JSON format.
+
+### `POST /delete/:fileName`
+Deletes the specified file from the server.
 
 ---
 
