@@ -1,7 +1,5 @@
 # VaultSync
 
-**Created by Muhammad Ikhwan Fathulloh**
-
 ## Overview
 VaultSync is a lightweight file management system built with native JavaScript and Node.js. It demonstrates core concepts of memory handling, input/output operations, file manipulation, and basic security.
 
@@ -142,16 +140,6 @@ Deletes the specified file from the server.
 - Ensure the `uploads/` directory is protected against unauthorized access when deploying to production.
 - Validate file uploads to prevent malicious content from being stored on the server.
 - Restrict access to server routes to authorized users only (future enhancement).
-
----
-
-## Author
-**Muhammad Ikhwan Fathulloh**  
-Software Engineer | IoT Trainer | AI Mentor
-
-Feel free to connect or collaborate:
-- **Email**: muhammadikhwanfathulloh17@gmail.com
-- **GitHub**: [Muhammad-Ikhwan-Fathulloh](https://github.com/Muhammad-Ikhwan-Fathulloh)
 
 ---
 
