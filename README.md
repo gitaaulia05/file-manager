@@ -81,7 +81,7 @@ docker build -t node-file-server .
 ### Running the Docker Container
 
 ```bash
-docker run -p 3000:3000 -v $(pwd)/uploads:/usr/src/app/uploads --name file-server node-file-server
+docker run -p 3000:3000 -v C:/laragon/www/VaultSync:/usr/src/app --name file-server node-file-server
 ```
 
 - **`-p 3000:3000`**: Maps port 3000 on the host to port 3000 in the container.
