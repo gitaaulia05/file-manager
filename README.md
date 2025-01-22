@@ -1,99 +1,115 @@
 # VaultSync
 
-## Overview
-VaultSync is a lightweight file management system built with native JavaScript and Node.js. It demonstrates core concepts of memory handling, input/output operations, file manipulation, and basic security.
+## Ikhtisar
+VaultSync adalah sistem manajemen file ringan yang dibangun dengan JavaScript native dan Node.js. Aplikasi ini mendemonstrasikan konsep inti seperti manajemen memori, operasi input/output, manipulasi file, dan keamanan dasar.
 
 ---
 
-## Features
-- **File Upload**: Upload files directly through the browser.
-- **File Management**: View uploaded files, including metadata like size and upload time.
-- **File Deletion**: Delete files from the server with a single click.
-- **Metadata Storage**: Persist file information using JSON-based metadata.
-- **Secure Operations**: Restrict file operations to prevent unauthorized access.
+## Fitur Utama
+- **Unggah File**: Unggah file langsung melalui browser.
+- **Manajemen File**: Lihat file yang diunggah, termasuk metadata seperti ukuran dan waktu unggah.
+- **Penghapusan File**: Hapus file dari server dengan satu klik.
+- **Penyimpanan Metadata**: Menyimpan informasi file menggunakan metadata berbasis JSON.
+- **Operasi Aman**: Membatasi operasi file untuk mencegah akses yang tidak sah.
 
 ---
 
-## Requirements
-- [Node.js](https://nodejs.org/) (v14 or higher)
-- A modern web browser (e.g., Chrome, Firefox)
+## Persyaratan
+- [Node.js](https://nodejs.org/) (v14 atau lebih tinggi)
+- Browser modern (misalnya, Chrome, Firefox)
+- [Laragon](https://laragon.org/) (untuk pengembangan lokal)
+- [Visual Studio Code](https://code.visualstudio.com/download) (untuk pengeditan kode)
 
 ---
 
-## Folder Structure
+## Struktur Folder
 ```plaintext
 project-folder/
-├── server.js          // Main server file
-├── fileStore.js       // Handles metadata storage
-├── style.css          // Frontend styling
-├── index.html         // Frontend interface
-├── uploads/           // Directory for uploaded files
-└── fileMetadata.json  // JSON file to store metadata
+├── server.js          // File utama server
+├── fileStore.js       // Mengelola penyimpanan metadata
+├── style.css          // Styling frontend
+├── index.html         // Antarmuka frontend
+├── uploads/           // Direktori untuk file yang diunggah
+└── fileMetadata.json  // File JSON untuk menyimpan metadata
 ```
 
 ---
 
-## Installation
-1. **Clone the repository**:
+## Instalasi
+
+### Langkah 1: Instalasi Laragon
+1. Unduh Laragon dari situs resminya: [https://laragon.org/](https://laragon.org/).
+2. Jalankan installer dan ikuti langkah-langkah berikut:
+   - Pilih lokasi instalasi, misalnya `C:\laragon`.
+   - Pilih komponen yang diperlukan (Full version direkomendasikan untuk pemula).
+3. Setelah instalasi selesai, buka aplikasi Laragon dan klik **Start All** untuk memulai semua layanan.
+4. Pastikan Laragon berjalan dengan baik dengan mengakses [http://localhost](http://localhost) di browser Anda.
+
+### Langkah 2: Instalasi Visual Studio Code
+1. Unduh Visual Studio Code dari situs resminya: [https://code.visualstudio.com/download](https://code.visualstudio.com/download).
+2. Jalankan installer dan ikuti wizard instalasi:
+   - Pilih lokasi instalasi (default: `C:\Program Files\Microsoft VS Code`).
+   - Centang opsi "Add to PATH" untuk mempermudah akses dari terminal.
+3. Setelah instalasi selesai, buka Visual Studio Code dan tambahkan ekstensi yang diperlukan seperti **Prettier**, **ESLint**, dan **Docker**.
+
+### Langkah 3: Clone Repositori
+1. Clone repositori VaultSync:
    ```bash
    git clone https://github.com/Muhammad-Ikhwan-Fathulloh/VaultSync.git
    cd VaultSync
    ```
-2. **Install dependencies**:
-   ```bash
-   npm init -y
-   ```
-3. **Ensure the `uploads/` directory exists**:
+2. Pastikan direktori `uploads/` ada:
    ```bash
    mkdir uploads
    ```
-4. **Run the server**:
+
+### Langkah 4: Instalasi Node.js
+1. Pastikan Node.js sudah terinstal di sistem Anda. Cek dengan perintah:
+   ```bash
+   node -v
+   ```
+2. Jika belum terinstal, unduh dan instal Node.js dari [https://nodejs.org/](https://nodejs.org/).
+
+3. Instal dependensi proyek:
+   ```bash
+   npm init -y
+   ```
+
+### Langkah 5: Menjalankan Server
+1. Jalankan server dengan perintah berikut:
    ```bash
    node server.js
    ```
-
----
-
-## Usage
-1. Start the server by running:
-   ```bash
-   node server.js
-   ```
-2. Open your browser and go to:
+2. Buka browser Anda dan akses:
    ```
    http://localhost:3000/
    ```
-3. Use the interface to:
-   - Upload files.
-   - View and manage uploaded files.
-   - Delete files when no longer needed.
 
 ---
 
-## Docker Support
+## Dukungan Docker
 
-### Building the Docker Image
+### Membuat Docker Image
 
 ```bash
 docker build -t node-file-server .
 ```
 
-### Running the Docker Container
+### Menjalankan Docker Container
 
 ```bash
 docker run -p 3000:3000 -v C:/laragon/www/VaultSync:/usr/src/app --name file-server node-file-server
 ```
 
-- **`-p 3000:3000`**: Maps port 3000 on the host to port 3000 in the container.
-- **`-v $(pwd)/uploads:/usr/src/app/uploads`**: Synchronizes the `uploads` directory between the host and the container.
+- **`-p 3000:3000`**: Memetakan port 3000 di host ke port 3000 di container.
 
-### Stopping the Container
+### Menghentikan Container
 
 ```bash
 docker stop file-server
 ```
 
-### Removing the Container
+### Menghapus Container
 
 ```bash
 docker rm file-server
@@ -101,47 +117,47 @@ docker rm file-server
 
 ---
 
-## Key Files
+## File Utama
 
 ### 1. `server.js`
-Handles server logic, including file uploads, retrieval, and deletion. It also serves the frontend files (`index.html` and `style.css`).
+Mengelola logika server, termasuk unggahan, pengambilan, dan penghapusan file. Juga menyajikan file frontend (`index.html` dan `style.css`).
 
 ### 2. `fileStore.js`
-Manages metadata for uploaded files, including saving and retrieving metadata from a JSON file (`fileMetadata.json`).
+Mengelola metadata untuk file yang diunggah, termasuk penyimpanan dan pengambilan metadata dari file JSON (`fileMetadata.json`).
 
 ### 3. `index.html`
-Frontend interface for interacting with the application.
+Antarmuka frontend untuk berinteraksi dengan aplikasi.
 
 ### 4. `style.css`
-Provides a clean and simple UI design for the application.
+Menyediakan desain UI yang sederhana dan bersih untuk aplikasi.
 
 ---
 
 ## API Endpoints
 
 ### `GET /`
-Serves the main HTML page.
+Menyajikan halaman HTML utama.
 
 ### `GET /style.css`
-Serves the CSS file for styling.
+Menyajikan file CSS untuk styling.
 
 ### `POST /upload`
-Uploads a file to the server.
+Mengunggah file ke server.
 
 ### `GET /files`
-Returns a list of uploaded files along with their metadata in JSON format.
+Mengembalikan daftar file yang diunggah beserta metadata dalam format JSON.
 
 ### `POST /delete/:fileName`
-Deletes the specified file from the server.
+Menghapus file tertentu dari server.
 
 ---
 
-## Security Notes
-- Ensure the `uploads/` directory is protected against unauthorized access when deploying to production.
-- Validate file uploads to prevent malicious content from being stored on the server.
-- Restrict access to server routes to authorized users only (future enhancement).
+## Catatan Keamanan
+- Pastikan direktori `uploads/` terlindungi dari akses tidak sah saat melakukan deployment ke produksi.
+- Validasi file yang diunggah untuk mencegah konten berbahaya disimpan di server.
+- Batasi akses ke rute server hanya untuk pengguna yang berwenang (pengembangan di masa depan).
 
 ---
 
-## License
-This project is licensed under the MIT License. Feel free to use, modify, and distribute this project as needed.
+## Lisensi
+Proyek ini dilisensikan di bawah lisensi MIT. Anda bebas menggunakan, memodifikasi, dan mendistribusikan proyek ini sesuai kebutuhan.
