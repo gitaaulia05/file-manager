@@ -160,6 +160,7 @@
 
             fetch('/files' , {
                 headers : {
+                    // format bearer 
                     Authorization: `Bearer ${token}`,
                 },
               
@@ -203,16 +204,21 @@
                         deleteBtn.textContent = 'Delete';
                         deleteBtn.className = 'delete-btn';
                         deleteBtn.id = 'exampleModal1';
+                        
+
+                        // BERFUNGSI UNTUK MEMBUKA MODAL BOOTSTRAP
                         deleteBtn.setAttribute('data-bs-toggle', 'modal');
                         deleteBtn.setAttribute('data-bs-target', '#exampleModal1');
-                         // deleteBtn.onclick = () => deleteFile(file.name);
-                        li.appendChild(deleteBtn);
+                     
+                        li.appendChild(deleteBtn); // MENAMBAHKAN BUTTON KE LIST
                         fileList.appendChild(li);
 
                         deleteBtn.addEventListener('click' , () => {
-                            tokenDel.value='';
-                            const saveChanges = document.getElementById('saveChanges');
-                            saveChanges.setAttribute('onclick' , `deleteFile('${file.name}')`);
+                            tokenDel.value=''; // MENGOSONGKAN INPUT TOKEN
+                            const saveChanges = document.getElementById('saveChanges'); // BUTTON MODAL
+
+                            //MEMBUAT FUNGSI deleteFile KETIKA TOMBOL DI KLIK
+                            saveChanges.setAttribute('onclick' , `deleteFile('${file.name}')`); 
                         })
                     });
 
@@ -226,7 +232,7 @@
 
         function deleteFile(fileName) {
             
-            const tokenDels = tokenDel.value;
+            const tokenDels = tokenDel.value; // MENGAMBIL VALUE DARI input 
 
             if(!fileName || !tokenDels) {
                 alert('Token Required');

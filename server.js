@@ -7,7 +7,7 @@ const { addMetadata, getAllFiles, deleteFileMetadata } = require('./fileStore');
 
 const uploadDir = path.join(__dirname, 'uploads');
 
-//Menyimpan token yang valid ( BERISI TOKEN DAN MASA KADALUARSA)
+//Menyimpan token yang valid ( BERISI TOKEN(key) DAN MASA KADALUARSA(value))
 const validTokens = new Map();
 // Pastikan folder "uploads" ada
 if (!fs.existsSync(uploadDir)) {
@@ -66,8 +66,8 @@ const server = http.createServer((req, res) => {
         });
     } else if (req.method === 'POST' && req.url === '/upload') {
         const authHeader = req.headers['authorization'];
-     
-        const token = req.headers['authorization']?.split(' ')[1];
+        // mengambil headers authorization (format bearer) mengambil hanya tokennya saja
+        const token = authHeader.split(' ')[1];
      
         if(!token || !validTokens.has(token)) {
             res.statusCode = 401;
@@ -109,9 +109,9 @@ const server = http.createServer((req, res) => {
             });
         });
     } else if (req.method === 'GET' && req.url === '/files') {
+        // MENGAMBIL HEADER AUTHORIZATION 
         const authHeader = req.headers['authorization'];
-        console.log('authorization Header:', authHeader);
-
+     
         if(!authHeader) {
             res.statusCode = 401;
             res.setHeader('Content-Type', 'application/json');
@@ -120,7 +120,7 @@ const server = http.createServer((req, res) => {
             }));
             return;
         }
-
+        // mengambil headers authorization (format bearer) mengambil hanya tokennya saja
         const token = authHeader.split(' ')[1];
         console.log('token delete ' +token);
 

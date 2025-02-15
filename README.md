@@ -11,6 +11,7 @@ VaultSync adalah sistem manajemen file ringan yang dibangun dengan JavaScript na
 - **Penghapusan File**: Hapus file dari server dengan satu klik.
 - **Penyimpanan Metadata**: Menyimpan informasi file menggunakan metadata berbasis JSON.
 - **Operasi Aman**: Membatasi operasi file untuk mencegah akses yang tidak sah.
+- **Authentikasi Endpoint** : Setiap request yang dilakukan harus menyertakan token yang valid, dimana token tersebut di generate dengan fitur generate token. Untuk melindungi akses endpoint dari pengguna yang tidak memiliki otorisasi.
 
 ---
 
@@ -142,7 +143,7 @@ Menyajikan halaman HTML utama.
 Menyajikan file CSS untuk styling.
 
 ### `POST /upload`
-Mengunggah file ke server.
+Mengunggah file ke server 
 
 ### `GET /files`
 Mengembalikan daftar file yang diunggah beserta metadata dalam format JSON.
