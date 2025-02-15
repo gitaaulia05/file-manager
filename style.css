@@ -13,7 +13,7 @@ h1 {
     color: #4CAF50;
 }
 
-#fileInput {
+.inputs {
     display: block;
     margin: 20px auto;
     padding: 10px;
