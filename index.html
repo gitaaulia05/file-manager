@@ -234,7 +234,10 @@
             
             const tokenDels = tokenDel.value; // MENGAMBIL VALUE DARI input 
 
-            if(!fileName || !tokenDels) {
+            if(!fileName ) {
+                alert('FIle Required');
+                return;
+            } else if( !tokenDels){
                 alert('Token Required');
                 return;
             }
@@ -276,6 +279,7 @@
                 fetch('/upload', {
                     method: 'POST',
                     headers: {
+                        // MENGIRIM TOKEN DALAM FORMAT BEARER
                         'authorization': `Bearer ${token}`
                     },
                     body: reader.result

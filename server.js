@@ -54,6 +54,8 @@ const server = http.createServer((req, res) => {
         });
      } 
     else if (req.method === 'GET' && req.url === '/style.css') {
+        
+
         const cssPath = path.join(__dirname, 'style.css');
         fs.readFile(cssPath, (err, data) => {
             if (err) {
@@ -65,7 +67,9 @@ const server = http.createServer((req, res) => {
             res.end(data);
         });
     } else if (req.method === 'POST' && req.url === '/upload') {
+        // mengambil headers authorization
         const authHeader = req.headers['authorization'];
+
         // mengambil headers authorization (format bearer) mengambil hanya tokennya saja
         const token = authHeader.split(' ')[1];
      
@@ -122,8 +126,7 @@ const server = http.createServer((req, res) => {
         }
         // mengambil headers authorization (format bearer) mengambil hanya tokennya saja
         const token = authHeader.split(' ')[1];
-        console.log('token delete ' +token);
-
+     
         if(!token || !validTokens.has(token)) {
             res.statusCode = 401;
             res.setHeader('Content-Type' , 'application/json');
@@ -140,8 +143,9 @@ const server = http.createServer((req, res) => {
         res.end(JSON.stringify( files));
 
     } else if (req.method === 'POST' && req.url.startsWith('/delete/')) {
+         // MENGAMBIL HEADER AUTHORIZATION 
         const authHeader = req.headers['authorization'];
-        console.log('authorization Header:', authHeader);
+
 
         if(!authHeader) {
             res.statusCode = 401;
@@ -151,9 +155,9 @@ const server = http.createServer((req, res) => {
             }));
             return;
         }
-
+        
+  // mengambil headers authorization (format bearer) mengambil hanya tokennya saja
         const token = authHeader.split(' ')[1];
-        console.log('token delete ' +token);
 
         if(!token || !validTokens.has(token)) {
             res.statusCode = 401;
